@@ -10,11 +10,11 @@ const Announcement = () => {
   }, []);
 
   return (
-    <div id="announcements" className="p-4">
+    <div id="announcements" className="p-4 mt-12 mx-2">
       {announcements.length > 0 && (
         <section className="bg-blue-50 rounded-xl p-4 shadow-md mb-6">
-          <h1 className="text-2xl font-bold mb-4">Welcome to My Site!</h1>
-          <h2 className="text-xl font-semibold mb-3">📢 Announcements</h2>
+          
+          <h2 className="text-xl font-bold mb-3">📢 Announcements</h2>
           <ul className="space-y-3">
             {announcements.map((a) => (
               <li

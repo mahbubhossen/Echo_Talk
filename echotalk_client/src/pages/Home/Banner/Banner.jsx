@@ -23,8 +23,8 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mt-24">
-      <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-12 px-4 text-white text-center rounded-xl shadow-lg">
+    <div className="max-w-7xl mx-2 px-4 mt-12 ">
+      <div className="bg-gradient-to-r from-purple-300 via-indigo-400 to-purple-300 py-12 px-4 text-white text-center rounded-2xl shadow-lg">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Find Posts by Tag 🔍
         </h1>
@@ -39,7 +39,7 @@ const Banner = () => {
           {/* Replace button with AwesomeButton */}
           <AwesomeButton
             type="primary"
-            onPress={handleSearch}
+            onClick={handleSearch}
             className="w-full sm:w-auto"
           >
             Search

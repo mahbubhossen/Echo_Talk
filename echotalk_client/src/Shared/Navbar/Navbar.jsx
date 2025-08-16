@@ -44,7 +44,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar mb-16 bg-gray-100 shadow-md px-4 lg:px-4 fixed top-0 left-0 w-full z-50">
+    <div className="navbar mb-16 bg-gray-100 shadow-md px-4 lg:px-6 fixed top-0 left-0 w-full z-50">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start items-center">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">

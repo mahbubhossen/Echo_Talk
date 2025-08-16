@@ -37,10 +37,12 @@ const AllPosts = () => {
   if (isLoading) return <div className="text-center py-10">Loading...</div>;
 
   return (
-    <div id="all-posts" className="p-4 max-w-5xl mx-auto">
+    <div id="all-posts" className="p-4 max-w-7xl mx-2 mt-12">
+      <h2 className="text-2xl font-bold text-center ">All Posts</h2>
       {/* Sort by Popularity */}
-      <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 mb-6">
-        <h2 className="text-2xl font-bold">All Posts</h2>
+      
+      <div className="flex flex-col sm:flex-row sm:justify-end items-center gap-4 mb-6">
+        
         <button
           onClick={() => setSortByPopularity(!sortByPopularity)}
           className="btn btn-outline btn-sm"

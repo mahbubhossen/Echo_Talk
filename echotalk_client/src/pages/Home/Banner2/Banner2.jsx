@@ -3,7 +3,7 @@ import bannerImg from "../../../assets/banner.png"; // 🔹 এখানে ত�
 
 const Banner2 = () => {
   return (
-    <section className="bg-gray-50 py-12 mt-20 mx-4">
+    <section className="bg-gray-50 py-12 mt-20 mx-6 rounded-2xl">
       <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10">
         
         {/* Left Side: Text */}

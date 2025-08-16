@@ -15,8 +15,8 @@ const TagsSection = ({ onTagSelect }) => {
   }, []);
 
   return (
-    <section className="max-w-7xl mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+    <section className="max-w-7xl mx-auto p-4 mt-12">
+      <h2 className="text-2xl font-bold mb-4 text-center">
         Browse by Tags
       </h2>
       <div className="flex flex-wrap justify-center gap-3">

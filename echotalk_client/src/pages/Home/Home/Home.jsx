@@ -5,6 +5,8 @@ import TagsSection from '../TagsSection/TagsSection';
 import Announcement from '../Announcement/Announcement';
 import { useLocation } from "react-router";
 import Banner2 from '../Banner2/Banner2';
+import FaqSection from '../FaqSection/FaqSection';
+import CommunityGuidelines from '../CommunityGuidelines/CommunityGuidelines';
 const Home = () => {
     const location = useLocation();
 
@@ -23,8 +25,11 @@ const Home = () => {
             <Banner2></Banner2>
             <Banner></Banner>
             <TagsSection></TagsSection>
-            <section id='announcements'><Announcement></Announcement></section>
+            
             <section id='all-posts'><AllPosts ></AllPosts></section>
+            <section id='announcements'><Announcement></Announcement></section>
+            <FaqSection></FaqSection>
+            <CommunityGuidelines></CommunityGuidelines>
         </div>
     );
 };
