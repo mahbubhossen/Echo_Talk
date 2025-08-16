@@ -15,8 +15,13 @@ import AdminProfile from "../pages/Dashboard/AdminProfile";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import ReportedComments from "../pages/Dashboard/ReportedComments";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
+import NotFound from "../pages/Home/NotFound/NotFound";
 
 export const router = createBrowserRouter([
+  {
+    path: "*",
+    element: <NotFound />,
+  },
   {
     path: "/",
     Component: MainLayout,
