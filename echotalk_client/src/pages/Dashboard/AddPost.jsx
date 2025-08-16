@@ -170,7 +170,7 @@ const AddPost = () => {
               options={tagOptions}
               placeholder="Select a tag"
               isSearchable
-              className="react-select-container"
+              className="react-select-container text-black"
               classNamePrefix="react-select"
             />
           )}

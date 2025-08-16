@@ -44,7 +44,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar mb-16 bg-gray-100 shadow-md px-4 lg:px-6 fixed top-0 left-0 w-full z-50">
+    <div className="navbar mb-16 bg-gray-100 text-black shadow-md px-4 lg:px-6 fixed top-0 left-0 w-full z-50">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start items-center">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
@@ -111,12 +111,12 @@ const Navbar = () => {
       {/* Right: Notification + Auth */}
       <div className="flex-1 hidden md:flex justify-end items-center gap-4">
         {announcementCount > 0 && (
-          <Link to="/announcements" className="btn btn-ghost btn-sm relative">
+          <ScrollLink onClick={() => handleScroll("announcements")} to="/announcements" className="btn btn-ghost btn-sm relative">
             <Bell className="w-5 h-5" />
             <span className="badge badge-error badge-xs absolute top-0 right-0">
               {announcementCount}
             </span>
-          </Link>
+          </ScrollLink>
         )}
 
         {!user ? (
@@ -139,7 +139,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-100 rounded-box w-52"
             >
               <li className="text-center font-semibold pointer-events-none">
                 {user?.displayName || "User"}

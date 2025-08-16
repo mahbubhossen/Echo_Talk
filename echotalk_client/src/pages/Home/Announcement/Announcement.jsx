@@ -10,7 +10,7 @@ const Announcement = () => {
   }, []);
 
   return (
-    <div id="announcements" className="p-4 mt-12 mx-2">
+    <div id="announcements" className="p-4 mt-12 mx-2 text-black">
       {announcements.length > 0 && (
         <section className="bg-blue-50 rounded-xl p-4 shadow-md mb-6">
           

@@ -1,6 +1,14 @@
 import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/AuthProvider";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
@@ -28,6 +36,18 @@ const MyProfile = () => {
     },
     enabled: !!user?.email,
   });
+
+  // 👉 Generate dummy chart data from recent posts (group by date)
+  const chartData = recentPosts.reduce((acc, post) => {
+    const date = new Date(post.createdAt).toLocaleDateString();
+    const existing = acc.find((item) => item.date === date);
+    if (existing) {
+      existing.posts += 1;
+    } else {
+      acc.push({ date, posts: 1 });
+    }
+    return acc;
+  }, []);
 
   return (
     <div className="px-4 py-6 max-w-7xl mx-auto space-y-6">
@@ -61,7 +81,28 @@ const MyProfile = () => {
         </div>
       </div>
 
-      {/* Recent Posts */}
+   
+      {/* 📊 Posting Activity Chart (NEW) */}
+      {chartData.length > 0 && (
+        <div className="bg-base-100 p-6 rounded-lg shadow-md">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center sm:text-left">
+            Posting Activity
+          </h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <XAxis dataKey="date" />
+                <YAxis allowDecimals={false} />
+                <Tooltip />
+                <Bar dataKey="posts" fill="#6366f1" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
+
+
+         {/* Recent Posts */}
       <div className="bg-base-100 p-6 rounded-lg shadow-md">
         <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center sm:text-left">
           Recent Posts
@@ -87,6 +128,7 @@ const MyProfile = () => {
           </p>
         )}
       </div>
+
     </div>
   );
 };

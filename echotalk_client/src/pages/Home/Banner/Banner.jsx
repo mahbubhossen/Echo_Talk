@@ -32,7 +32,7 @@ const Banner = () => {
           <input
             type="text"
             placeholder="Search by tag, e.g., education"
-            className="input input-bordered w-full text-black"
+            className="input input-bordered w-full text-blue-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

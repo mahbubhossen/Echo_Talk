@@ -26,6 +26,7 @@
     "react-scroll": "^1.9.3",
     "react-select": "^5.10.2",
     "react-share": "^5.2.2",
+    "recharts": "^3.1.2",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
