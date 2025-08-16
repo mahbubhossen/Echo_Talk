@@ -4,6 +4,7 @@ import { Bell } from "lucide-react";
 import logo from "../../assets/echotalk_logo.png";
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { Link as ScrollLink } from "react-scroll"; // 🔹 Added
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -28,17 +29,20 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar bg-base-100 shadow-md px-4 lg:px-10">
+    <div className="navbar bg-gray-100 shadow-md px-4 lg:px-4">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start items-center">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
           <img src={logo} alt="Logo" className="w-14 h-12" />
-          <span className="hidden sm:inline">EchoTalk</span>
+          <span className="hidden sm:inline">
+            Echo<span className="text-primary">Talk</span>
+          </span>
         </Link>
       </div>
 
       {/* Center: Nav Links */}
       <div className="flex-1 hidden md:flex justify-center items-center gap-6">
+        {/* Always show Home */}
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -49,16 +53,44 @@ const Navbar = () => {
         >
           Home
         </NavLink>
-        <NavLink
-          to="/membership"
-          className={({ isActive }) =>
-            isActive
-              ? "btn btn-sm btn-ghost text-primary font-semibold"
-              : "btn btn-sm btn-ghost"
-          }
+
+        {/* Always show All Posts */}
+        {/* 🔹 Added All Posts route */}
+        <ScrollLink
+          to="all-posts" // section id
+          smooth={true} // smooth scroll
+          duration={600} // scroll speed (ms)
+          offset={-80} // navbar height adjust (optional)
+          className="btn btn-sm btn-ghost cursor-pointer"
         >
-          Membership
-        </NavLink>
+          All Posts
+        </ScrollLink>
+
+        {/* Always show Announcement */}
+        {/* 🔹 Added Announcement route */}
+        <ScrollLink
+          to="announcements" // section id
+          smooth={true} // smooth scroll
+          duration={600} // scroll speed (ms)
+          offset={-80} // navbar height adjust (optional)
+          className="btn btn-sm btn-ghost cursor-pointer"
+        >
+          Announcement
+        </ScrollLink>
+
+        {/* Show Membership only when user logged in */}
+        {user && (
+          <NavLink
+            to="/membership"
+            className={({ isActive }) =>
+              isActive
+                ? "btn btn-sm btn-ghost text-primary font-semibold"
+                : "btn btn-sm btn-ghost"
+            }
+          >
+            Membership
+          </NavLink>
+        )}
       </div>
 
       {/* Right: Notification + Auth */}
@@ -135,24 +167,64 @@ const Navbar = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
+          {/* 🔹 Added All Posts in mobile */}
           <li>
-            <NavLink to="/membership">Membership</NavLink>
+            <ScrollLink
+              to="all-posts"
+              smooth={true}
+              duration={600}
+              offset={-80}
+              className="cursor-pointer"
+            >
+              All Posts
+            </ScrollLink>
+          </li>
+          {/* 🔹 Added Announcement in mobile */}
+          <li>
+            <ScrollLink
+              to="announcements"
+              smooth={true}
+              duration={600}
+              offset={-80}
+              className="cursor-pointer"
+            >
+              Announcements
+            </ScrollLink>
+          </li>
+          {/* 🔹 Added All Posts in mobile */}
+          <li>
+            <ScrollLink
+              to="all-posts"
+              smooth={true}
+              duration={600}
+              offset={-80}
+              className="cursor-pointer"
+            >
+              All Posts
+            </ScrollLink>
           </li>
 
+          {/* Membership only if user logged in */}
           {user && (
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink to="/membership">Membership</NavLink>
             </li>
           )}
-          {!user ? (
-            <li>
-              <Link to="/login">Join Us</Link>
-            </li>
+
+          {user ? (
+            <>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/logout" className="text-error">
+                  Logout
+                </Link>
+              </li>
+            </>
           ) : (
             <li>
-              <Link to="/logout" className="text-error">
-                Logout
-              </Link>
+              <Link to="/login">Join Us</Link>
             </li>
           )}
         </ul>

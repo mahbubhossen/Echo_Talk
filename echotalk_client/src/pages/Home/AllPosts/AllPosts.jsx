@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
+
 const POSTS_PER_PAGE = 5;
 
 const AllPosts = () => {
@@ -36,7 +37,7 @@ const AllPosts = () => {
   if (isLoading) return <div className="text-center py-10">Loading...</div>;
 
   return (
-    <div className="p-4 max-w-5xl mx-auto">
+    <div id="all-posts" className="p-4 max-w-5xl mx-auto">
       {/* Sort by Popularity */}
       <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 mb-6">
         <h2 className="text-2xl font-bold">All Posts</h2>
