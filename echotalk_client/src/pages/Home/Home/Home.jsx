@@ -4,6 +4,7 @@ import Banner from '../Banner/Banner';
 import TagsSection from '../TagsSection/TagsSection';
 import Announcement from '../Announcement/Announcement';
 import { useLocation } from "react-router";
+import Banner2 from '../Banner2/Banner2';
 const Home = () => {
     const location = useLocation();
 
@@ -19,6 +20,7 @@ const Home = () => {
   }, [location.state]);
     return (
         <div>
+            <Banner2></Banner2>
             <Banner></Banner>
             <TagsSection></TagsSection>
             <section id='announcements'><Announcement></Announcement></section>
