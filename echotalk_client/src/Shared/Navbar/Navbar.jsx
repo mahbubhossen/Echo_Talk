@@ -5,10 +5,25 @@ import logo from "../../assets/echotalk_logo.png";
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { Link as ScrollLink } from "react-scroll"; // 🔹 Added
+import { useNavigate } from "react-router";   // 🔹 Added
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [announcementCount, setAnnouncementCount] = useState(0);
+   const navigate = useNavigate();   // 🔹 Added
+
+   const handleScroll = (sectionId) => {
+    if (window.location.pathname !== "/") {
+      // go to home with scroll target
+      navigate("/", { state: { scrollTo: sectionId } });
+    } else {
+      // already on home → trigger scroll directly
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
@@ -29,7 +44,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar bg-gray-100 shadow-md px-4 lg:px-4">
+    <div className="navbar mb-16 bg-gray-100 shadow-md px-4 lg:px-4 fixed top-0 left-0 w-full z-50">
       {/* Left: Logo */}
       <div className="flex-1 flex justify-start items-center">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
@@ -56,7 +71,7 @@ const Navbar = () => {
 
         {/* Always show All Posts */}
         {/* 🔹 Added All Posts route */}
-        <ScrollLink
+        <ScrollLink onClick={() => handleScroll("all-posts")}
           to="all-posts" // section id
           smooth={true} // smooth scroll
           duration={600} // scroll speed (ms)
@@ -68,7 +83,7 @@ const Navbar = () => {
 
         {/* Always show Announcement */}
         {/* 🔹 Added Announcement route */}
-        <ScrollLink
+        <ScrollLink onClick={() => handleScroll("announcements")}
           to="announcements" // section id
           smooth={true} // smooth scroll
           duration={600} // scroll speed (ms)
@@ -169,7 +184,7 @@ const Navbar = () => {
           </li>
           {/* 🔹 Added All Posts in mobile */}
           <li>
-            <ScrollLink
+            <ScrollLink onClick={() => handleScroll("all-posts")}
               to="all-posts"
               smooth={true}
               duration={600}
@@ -181,7 +196,7 @@ const Navbar = () => {
           </li>
           {/* 🔹 Added Announcement in mobile */}
           <li>
-            <ScrollLink
+            <ScrollLink onClick={() => handleScroll("announcements")}
               to="announcements"
               smooth={true}
               duration={600}
@@ -191,18 +206,7 @@ const Navbar = () => {
               Announcements
             </ScrollLink>
           </li>
-          {/* 🔹 Added All Posts in mobile */}
-          <li>
-            <ScrollLink
-              to="all-posts"
-              smooth={true}
-              duration={600}
-              offset={-80}
-              className="cursor-pointer"
-            >
-              All Posts
-            </ScrollLink>
-          </li>
+
 
           {/* Membership only if user logged in */}
           {user && (

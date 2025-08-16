@@ -23,7 +23,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mt-4">
+    <div className="max-w-7xl mx-auto px-4 mt-24">
       <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-12 px-4 text-white text-center rounded-xl shadow-lg">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Find Posts by Tag 🔍
